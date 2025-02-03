@@ -4,7 +4,8 @@
     "dev": "bun run --hot src/index.ts",
     "push": "bunx drizzle-kit push",
     "generate": "bunx drizzle-kit generate",
-    "studio": "bunx drizzle-kit studio"
+    "studio": "bunx drizzle-kit studio",
+    "seed": "bun run ./src/db/seedGenres.ts"
   },
   "dependencies": {
     "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
