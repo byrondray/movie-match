@@ -1,6 +1,6 @@
 // import { QueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
-import { type ApiRoutes } from '../../../../golf-app-api/my-app/src/app';
+import { type ApiRoutes } from '../../../../movie-chooser-api/my-app/src/app';
 import { hc } from 'hono/client';
 import { useEffect } from 'react';
 
