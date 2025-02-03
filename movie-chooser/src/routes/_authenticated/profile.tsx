@@ -73,7 +73,6 @@ function Profile() {
 
   return (
     <div className='container mx-auto max-w-2xl p-6 space-y-6'>
-      {/* Profile Card */}
       <Card>
         <CardHeader>
           <div className='flex items-center justify-between'>
@@ -102,7 +101,6 @@ function Profile() {
         </CardHeader>
       </Card>
 
-      {/* Genres Card */}
       <Card>
         <CardHeader className='flex flex-row items-center justify-between'>
           <CardTitle>Favorite Genres</CardTitle>
@@ -138,14 +136,12 @@ function Profile() {
         </CardContent>
       </Card>
 
-      {/* Additional Profile Info */}
       <Card>
         <CardHeader>
           <CardTitle>Profile Details</CardTitle>
         </CardHeader>
         <CardContent className='space-y-4'>
           {Object.entries(userData).map(([key, value]) => {
-            // Skip certain fields we've already displayed or don't want to show
             if (['picture', 'email', 'given_name', 'family_name'].includes(key))
               return null;
             return (
