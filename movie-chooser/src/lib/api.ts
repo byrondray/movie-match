@@ -64,3 +64,171 @@ export const getFriendByEmailQueryOptions = (email: string) => ({
   },
 });
 
+export const createMovieSessionOptions = {
+  mutationFn: async ({ created_by }: { created_by: string }) => {
+    const response = await api.movieSessions.create.$post({
+      json: { created_by },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData
+          ? errorData.error
+          : 'Failed to create movie session'
+      );
+    }
+    return response.json();
+  },
+};
+
+export const addParticipantOptions = {
+  mutationFn: async ({
+    sessionId,
+    user_id,
+  }: {
+    sessionId: number;
+    user_id: string;
+  }) => {
+    const response = await api.movieSessions[':sessionId'].participants.$post({
+      param: { sessionId: sessionId.toString() },
+      json: { user_id },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData ? errorData.error : 'Failed to add participant'
+      );
+    }
+    return response.json();
+  },
+};
+
+export const addMovieSelectionOptions = {
+  mutationFn: async ({
+    sessionId,
+    user_id,
+    movie_id,
+  }: {
+    sessionId: number;
+    user_id: string;
+    movie_id: number;
+  }) => {
+    const response = await api.movieSessions[':sessionId'].selections.$post({
+      param: { sessionId: sessionId.toString() },
+      json: { user_id, movie_id },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData ? errorData.error : 'Failed to add movie selection'
+      );
+    }
+    return response.json();
+  },
+};
+
+export const getMovieSessionOptions = (sessionId: number) => ({
+  queryKey: ['movie-session', sessionId],
+  queryFn: async () => {
+    const response = await api.movieSessions[':sessionId'].$get({
+      param: { sessionId: sessionId.toString() },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch movie session');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+});
+
+export const getAllGenresOptions = {
+  queryKey: ['genres-all'],
+  queryFn: async () => {
+    const response = await api.genres.all.$get();
+    if (!response.ok) {
+      throw new Error('Failed to fetch genres');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+};
+
+export const getGenreByIdOptions = (id: string) => ({
+  queryKey: ['genre', id],
+  queryFn: async () => {
+    const response = await api.genres[':id'].$get({
+      param: { id },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch genre');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+});
+
+export const searchGenreOptions = (genre: string) => ({
+  queryKey: ['genre-search', genre],
+  queryFn: async () => {
+    const response = await api.genres.search[':genre'].$get({
+      param: { genre },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to search genre');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+});
+
+export const getUserGenresOptions = (userId: string) => ({
+  queryKey: ['user-genres', userId],
+  queryFn: async () => {
+    const response = await api.genres[':userId'].$get({
+      param: { userId },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch user genres');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+});
+
+// Movie Queries
+export const getMovieByIdOptions = (id: number) => ({
+  queryKey: ['movie', id],
+  queryFn: async () => {
+    const response = await api.movies[':id'].$get({
+      param: { id: id.toString() },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch movie');
+    }
+    return response.json();
+  },
+  staleTime: Infinity,
+});
+
+export const addMovieOptions = {
+  mutationFn: async ({
+    title,
+    genre,
+    releaseDate,
+  }: {
+    title: string;
+    genre: string;
+    releaseDate: string;
+  }) => {
+    const response = await api.movies.add.$post({
+      json: { title, genre, releaseDate },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData ? errorData.error : 'Failed to add movie'
+      );
+    }
+    return response.json();
+  },
+};

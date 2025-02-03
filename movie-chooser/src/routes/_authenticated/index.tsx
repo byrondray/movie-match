@@ -11,19 +11,7 @@ export const Route = createFileRoute('/_authenticated/')({
   component: Index,
 });
 
-async function fetchCourse() {
-  const c = await client.api.courses.$get();
-  const d = await c.json();
-  console.log(d);
-}
-
 function Index() {
-  useEffect(() => {
-    async function fetchData() {
-      await fetchCourse();
-    }
-    fetchData();
-  });
   return (
     <div className='p-2 flex flex-col items-center w-full h-screen'>
       {/* Top-aligned heading */}
