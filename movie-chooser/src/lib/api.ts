@@ -195,6 +195,48 @@ export const getUserGenresOptions = (userId: string) => ({
   staleTime: Infinity,
 });
 
+export const addUserGenreOptions = {
+  mutationFn: async ({
+    userId,
+    genreId,
+  }: {
+    userId: string;
+    genreId: string;
+  }) => {
+    const response = await api.genres.add.$post({
+      json: { userId, genreId },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData ? errorData.error : 'Failed to add user genre'
+      );
+    }
+    return response.json();
+  },
+};
+
+export const removeUserGenreOptions = {
+  mutationFn: async ({
+    userId,
+    genreId,
+  }: {
+    userId: string;
+    genreId: string;
+  }) => {
+    const response = await api.genres.remove.$post({
+      json: { userId, genreId },
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        'error' in errorData ? errorData.error : 'Failed to remove user genre'
+      );
+    }
+    return response.json();
+  },
+};
+
 // Movie Queries
 export const getMovieByIdOptions = (id: number) => ({
   queryKey: ['movie', id],

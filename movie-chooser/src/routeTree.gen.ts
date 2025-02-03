@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as AuthenticatedIndexImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedRoundHistoryImport } from './routes/_authenticated/roundHistory'
+import { Route as AuthenticatedUserGenresImport } from './routes/_authenticated/userGenres'
 import { Route as AuthenticatedProfileImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedFriendsImport } from './routes/_authenticated/friends'
 
@@ -30,9 +30,9 @@ const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthenticatedRoundHistoryRoute = AuthenticatedRoundHistoryImport.update({
-  id: '/roundHistory',
-  path: '/roundHistory',
+const AuthenticatedUserGenresRoute = AuthenticatedUserGenresImport.update({
+  id: '/userGenres',
+  path: '/userGenres',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
@@ -73,11 +73,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileImport
       parentRoute: typeof AuthenticatedImport
     }
-    '/_authenticated/roundHistory': {
-      id: '/_authenticated/roundHistory'
-      path: '/roundHistory'
-      fullPath: '/roundHistory'
-      preLoaderRoute: typeof AuthenticatedRoundHistoryImport
+    '/_authenticated/userGenres': {
+      id: '/_authenticated/userGenres'
+      path: '/userGenres'
+      fullPath: '/userGenres'
+      preLoaderRoute: typeof AuthenticatedUserGenresImport
       parentRoute: typeof AuthenticatedImport
     }
     '/_authenticated/': {
@@ -95,14 +95,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteChildren {
   AuthenticatedFriendsRoute: typeof AuthenticatedFriendsRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedRoundHistoryRoute: typeof AuthenticatedRoundHistoryRoute
+  AuthenticatedUserGenresRoute: typeof AuthenticatedUserGenresRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedFriendsRoute: AuthenticatedFriendsRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
-  AuthenticatedRoundHistoryRoute: AuthenticatedRoundHistoryRoute,
+  AuthenticatedUserGenresRoute: AuthenticatedUserGenresRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 
@@ -114,14 +114,14 @@ export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/friends': typeof AuthenticatedFriendsRoute
   '/profile': typeof AuthenticatedProfileRoute
-  '/roundHistory': typeof AuthenticatedRoundHistoryRoute
+  '/userGenres': typeof AuthenticatedUserGenresRoute
   '/': typeof AuthenticatedIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/friends': typeof AuthenticatedFriendsRoute
   '/profile': typeof AuthenticatedProfileRoute
-  '/roundHistory': typeof AuthenticatedRoundHistoryRoute
+  '/userGenres': typeof AuthenticatedUserGenresRoute
   '/': typeof AuthenticatedIndexRoute
 }
 
@@ -130,21 +130,21 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_authenticated/friends': typeof AuthenticatedFriendsRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
-  '/_authenticated/roundHistory': typeof AuthenticatedRoundHistoryRoute
+  '/_authenticated/userGenres': typeof AuthenticatedUserGenresRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/friends' | '/profile' | '/roundHistory' | '/'
+  fullPaths: '' | '/friends' | '/profile' | '/userGenres' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/friends' | '/profile' | '/roundHistory' | '/'
+  to: '/friends' | '/profile' | '/userGenres' | '/'
   id:
     | '__root__'
     | '/_authenticated'
     | '/_authenticated/friends'
     | '/_authenticated/profile'
-    | '/_authenticated/roundHistory'
+    | '/_authenticated/userGenres'
     | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
@@ -175,7 +175,7 @@ export const routeTree = rootRoute
       "children": [
         "/_authenticated/friends",
         "/_authenticated/profile",
-        "/_authenticated/roundHistory",
+        "/_authenticated/userGenres",
         "/_authenticated/"
       ]
     },
@@ -187,8 +187,8 @@ export const routeTree = rootRoute
       "filePath": "_authenticated/profile.tsx",
       "parent": "/_authenticated"
     },
-    "/_authenticated/roundHistory": {
-      "filePath": "_authenticated/roundHistory.tsx",
+    "/_authenticated/userGenres": {
+      "filePath": "_authenticated/userGenres.tsx",
       "parent": "/_authenticated"
     },
     "/_authenticated/": {
