@@ -1,0 +1,21 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "push": "bunx drizzle-kit push",
+    "generate": "bunx drizzle-kit generate",
+    "studio": "bunx drizzle-kit studio"
+  },
+  "dependencies": {
+    "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.28.1",
+    "drizzle-orm": "^0.36.3",
+    "hono": "^4.6.10",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
