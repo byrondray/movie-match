@@ -1,0 +1,2 @@
+ALTER TABLE `movie_sessions` ALTER COLUMN "created_at" TO "created_at" text DEFAULT '2025-02-03T03:10:52.653Z';--> statement-breakpoint
+ALTER TABLE `movies` ADD `genre` text NOT NULL REFERENCES genres(id);

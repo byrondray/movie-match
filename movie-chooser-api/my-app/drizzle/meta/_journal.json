@@ -15,6 +15,13 @@
       "when": 1738550615097,
       "tag": "0001_motionless_gabe_jones",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1738552252674,
+      "tag": "0002_abandoned_praxagora",
+      "breakpoints": true
     }
   ]
 }
